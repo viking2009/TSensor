@@ -668,7 +668,7 @@ OSStatus fftPitchShift (
     // display detected pitch
    
     
-    THIS.displayInputFrequency = (int) frequency;
+    THIS.displayInputFrequency = frequency;
     
     
     // very very cool effect but lets skip it temporarily    
@@ -815,7 +815,7 @@ OSStatus fftPassThrough (   void                        *inRefCon,          // s
         dominantFrequency = bin*(THIS.graphSampleRate/bufferCapacity);
         
         // printf("Dominant frequency: %f   \n" , dominantFrequency);
-        THIS.displayInputFrequency = (int) dominantFrequency;   // set instance variable with detected frequency
+        THIS.displayInputFrequency = dominantFrequency;   // set instance variable with detected frequency
 		
         
         // Carry out an inverse FFT transform.

@@ -103,7 +103,7 @@ typedef struct {
     
 // new instance variables for UI display objects
 	
-    int displayInputFrequency;              // frequency determined by analysis 
+    float displayInputFrequency;              // frequency determined by analysis
     float displayInputLevelLeft;            // average input level for meter left channel
     float displayInputLevelRight;           // average input level for meter right channel
     int displayNumberOfInputChannels;       // number of input channels detected on startup
@@ -192,7 +192,7 @@ typedef struct {
 @property size_t fftIndex;	
 
 
-@property (assign) int displayInputFrequency;
+@property (assign) float displayInputFrequency;
 @property (assign) float displayInputLevelLeft;
 @property (assign) float displayInputLevelRight;
 @property (assign) int displayNumberOfInputChannels;

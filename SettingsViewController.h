@@ -15,11 +15,11 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *minFrequencyLabel;
 @property (retain, nonatomic) IBOutlet UILabel *maxFrequencyLabel;
-@property (retain, nonatomic) IBOutlet UIStepper *minFrequencyStepper;
-@property (retain, nonatomic) IBOutlet UIStepper *maxFrequencyStepper;
+@property (retain, nonatomic) IBOutlet UITextField *minFrequencyTextField;
+@property (retain, nonatomic) IBOutlet UITextField *maxFrequencyTextField;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 
-- (IBAction)minFrequencyStepperValueChanged:(id)sender;
-- (IBAction)maxFrequencyStepperValueChanged:(id)sender;
+- (IBAction)minFrequencyValueChanged:(id)sender;
+- (IBAction)maxFrequencyValueChanged:(id)sender;
 
 @end

@@ -71,8 +71,8 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 @property (retain, nonatomic) IBOutlet UITableView      *sensorsTable;
 @property (retain, nonatomic) IBOutlet UIStepper        *intervalStepper;
 @property (retain, nonatomic) IBOutlet UIButton         *playButton;
-@property (assign, nonatomic) double minFrequencyValue;
-@property (assign, nonatomic) double maxFrequencyValue;
+@property (assign, nonatomic) float minFrequencyValue;
+@property (assign, nonatomic) float maxFrequencyValue;
 - (IBAction)intervalStepperChanged;
 @end
 
@@ -183,7 +183,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 //    remote-control events to allow reactivation of the audio session when running in the background.
 //    Also, to receive remote-control events, the app must be eligible to become the first responder.
 - (void) viewDidAppear: (BOOL) animated
-{    
+{
     [super viewDidAppear: animated];
     
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
@@ -221,7 +221,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 }
 
 
-- (void) viewWillDisppear: (BOOL) animated
+- (void) viewWillDisappear: (BOOL) animated
 {
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
     [self resignFirstResponder];
@@ -371,12 +371,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 
 // displays temperature (mic input frequency for now)
 - (void) updateTemperature: (NSTimer *) timer {
-	
     //	float z = [[timer userInfo] frequency];
     //    UInt32 y = [[timer userInfo] micLevel];
     
     NSString *date = [NSString stringWithFormat:@"%@", [timer fireDate]];
-    NSString *frequencyValue = [NSString stringWithFormat:@"%d",
+    NSString *frequencyValue = [NSString stringWithFormat:@"%.2f",
                                 [[timer userInfo] displayInputFrequency]];
     NSLog(@"displayInputFrequency = %@", frequencyValue);
     NSString *temperatureValue = self.temperatureMap[frequencyValue]?:@"not set";
@@ -478,16 +477,16 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
     if ([defaults doubleForKey:@"minFrequency"]) {
         self.minFrequencyValue = [defaults doubleForKey:@"minFrequency"];
     } else {
-        self.minFrequencyValue = 100;
+        self.minFrequencyValue = 100.00;
     }
     
     if ([defaults doubleForKey:@"maxFrequency"]) {
         self.maxFrequencyValue = [defaults doubleForKey:@"maxFrequency"];
     } else {
-        self.maxFrequencyValue = 500;
+        self.maxFrequencyValue = 500.00;
     }
     
-    NSLog(@"minValue = %f, maxValue = %f", self.minFrequencyValue, self.maxFrequencyValue);
+    NSLog(@"handleFrequencyAcceptableRangeChanged: minValue = %f, maxValue = %f", self.minFrequencyValue, self.maxFrequencyValue);
 }
 
 - (void) handleFrequencyTemperatureMapChanged: (NSNotification*) notification

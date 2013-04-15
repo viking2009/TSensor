@@ -10,7 +10,7 @@
 #import "EditInfoViewController.h"
 #import "TemperatureMap.h"
 
-@interface SettingsViewController ()
+@interface SettingsViewController () <UITextFieldDelegate>
 
 @property (retain, nonatomic) NSMutableDictionary *temperatureMap;
 @property (retain, nonatomic) NSMutableArray *temperatureArray;
@@ -39,19 +39,19 @@
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults doubleForKey:@"minFrequency"]) {
-        self.minFrequencyStepper.value = [defaults doubleForKey:@"minFrequency"];
+        self.minFrequencyTextField.text = [NSString stringWithFormat:@"%.2f", [defaults doubleForKey:@"minFrequency"]];
     } else {
-        self.minFrequencyStepper.value = 100;
+        self.minFrequencyTextField.text = @"100.00";
     }
     
     if ([defaults doubleForKey:@"maxFrequency"]) {
-        self.maxFrequencyStepper.value = [defaults doubleForKey:@"maxFrequency"];
+        self.maxFrequencyTextField.text = [NSString stringWithFormat:@"%.2f",[defaults doubleForKey:@"maxFrequency"]];
     } else {
-        self.maxFrequencyStepper.value = 500;
+        self.maxFrequencyTextField.text = @"500.00";
     }
     
-    [self minFrequencyStepperValueChanged:self.minFrequencyStepper];
-    [self maxFrequencyStepperValueChanged:self.maxFrequencyStepper];
+    [self minFrequencyValueChanged:self.minFrequencyTextField];
+    [self maxFrequencyValueChanged:self.maxFrequencyTextField];
     
     self.tableView.allowsSelectionDuringEditing = YES;
 }
@@ -65,19 +65,19 @@
 - (void)dealloc {
     [_minFrequencyLabel release];
     [_maxFrequencyLabel release];
-    [_minFrequencyStepper release];
-    [_maxFrequencyStepper release];
     [_tableView release];
     [_temperatureMap release];
+    [_minFrequencyTextField release];
+    [_maxFrequencyTextField release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setMinFrequencyLabel:nil];
     [self setMaxFrequencyLabel:nil];
-    [self setMinFrequencyStepper:nil];
-    [self setMaxFrequencyStepper:nil];
     [self setTableView:nil];
+    [self setMinFrequencyTextField:nil];
+    [self setMaxFrequencyTextField:nil];
     [super viewDidUnload];
 }
 
@@ -85,6 +85,17 @@
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark TextField Delegates
+/****************************************************************************/
+/*							TextField Delegates								*/
+/****************************************************************************/
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark -
@@ -210,33 +221,36 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 /*                              App IO Methods                              */
 /****************************************************************************/
 /** Increase or decrease the maximum alarm setting */
-- (IBAction)maxFrequencyStepperValueChanged:(id)sender
+- (IBAction)maxFrequencyValueChanged:(id)sender
 {
-    if (sender == self.maxFrequencyStepper) {
-        self.minFrequencyStepper.maximumValue = self.maxFrequencyStepper.value;
-        self.maxFrequencyLabel.text = [NSString stringWithFormat:@"MAX %.f", self.maxFrequencyStepper.value];
+    NSLog(@"sender = %@", sender);
+    if (sender == self.maxFrequencyTextField) {
+        self.maxFrequencyLabel.text = [NSString stringWithFormat:@"MAX %.2f", [self.maxFrequencyTextField.text doubleValue]];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setDouble:self.maxFrequencyStepper.value forKey:@"maxFrequency"];
+        [defaults setDouble:[self.maxFrequencyTextField.text doubleValue] forKey:@"maxFrequency"];
         
         if ([defaults synchronize]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyAcceptableRangeDidChangeNotification object:nil];
         }
+
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
     }
 }
 
-- (IBAction)minFrequencyStepperValueChanged:(id)sender
+- (IBAction)minFrequencyValueChanged:(id)sender
 {
-    if (sender == self.minFrequencyStepper) {
-        self.maxFrequencyStepper.minimumValue = self.minFrequencyStepper.value;
-        self.minFrequencyLabel.text = [NSString stringWithFormat:@"MIN %.f", self.minFrequencyStepper.value];
+    if (sender == self.minFrequencyTextField) {
+        self.minFrequencyLabel.text = [NSString stringWithFormat:@"MIN %.2f", [self.minFrequencyTextField.text doubleValue]];
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setDouble:self.minFrequencyStepper.value forKey:@"minFrequency"];
+        [defaults setDouble:[self.minFrequencyTextField.text doubleValue] forKey:@"minFrequency"];
         
         if ([defaults synchronize]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyAcceptableRangeDidChangeNotification object:nil];
         }
+        
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
     }
 }
 
