@@ -1,0 +1,436 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		90B4CA081711BE38009256B4 /* EditInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B4CA071711BE38009256B4 /* EditInfoViewController.m */; };
+		90B4CA0B1711CD98009256B4 /* TemperatureMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B4CA0A1711CD98009256B4 /* TemperatureMap.m */; };
+		90F8355C17119C81007CDA62 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F8355B17119C81007CDA62 /* Default-568h@2x.png */; };
+		90F8355F17119F5C007CDA62 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8355E17119F5C007CDA62 /* SettingsViewController.m */; };
+		90F87EC816FBB9DA00D4E5DE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F87EC716FBB9DA00D4E5DE /* AudioToolbox.framework */; };
+		90F87ED616FBBC6700D4E5DE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F87ED516FBBC6700D4E5DE /* AVFoundation.framework */; };
+		90F87ED816FBBC8000D4E5DE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F87ED716FBBC8000D4E5DE /* Accelerate.framework */; };
+		90F87EDE16FBC21400D4E5DE /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F87EDC16FBC21400D4E5DE /* TPCircularBuffer.c */; };
+		90F87EE416FBC24300D4E5DE /* MixerHostAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F87EE016FBC24300D4E5DE /* MixerHostAudio.m */; };
+		90F87EE516FBC24300D4E5DE /* smbPitchShift.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F87EE116FBC24300D4E5DE /* smbPitchShift.m */; };
+		90F87EE616FBC24300D4E5DE /* SNFCoreAudioUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F87EE216FBC24300D4E5DE /* SNFCoreAudioUtils.c */; };
+		B9182535148D762600D6064E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9182534148D762600D6064E /* UIKit.framework */; };
+		B9182537148D762600D6064E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9182536148D762600D6064E /* Foundation.framework */; };
+		B9182539148D762600D6064E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9182538148D762600D6064E /* CoreGraphics.framework */; };
+		B918253F148D762600D6064E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B918253D148D762600D6064E /* InfoPlist.strings */; };
+		B9182541148D762600D6064E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9182540148D762600D6064E /* main.m */; };
+		B9182545148D762600D6064E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9182544148D762600D6064E /* AppDelegate.m */; };
+		B9182548148D762600D6064E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9182546148D762600D6064E /* MainStoryboard.storyboard */; };
+		B918254B148D762600D6064E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B918254A148D762600D6064E /* ViewController.m */; };
+		B9C383731491694000CFD0B5 /* Icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C383721491694000CFD0B5 /* Icon-114.png */; };
+		B9C383761491694300CFD0B5 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C383751491694300CFD0B5 /* Icon-57.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		90B4CA061711BE38009256B4 /* EditInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInfoViewController.h; sourceTree = "<group>"; };
+		90B4CA071711BE38009256B4 /* EditInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInfoViewController.m; sourceTree = "<group>"; };
+		90B4CA091711CD98009256B4 /* TemperatureMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemperatureMap.h; sourceTree = "<group>"; };
+		90B4CA0A1711CD98009256B4 /* TemperatureMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemperatureMap.m; sourceTree = "<group>"; };
+		90F8355B17119C81007CDA62 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		90F8355D17119F5C007CDA62 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		90F8355E17119F5C007CDA62 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		90F87EC716FBB9DA00D4E5DE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		90F87ED516FBBC6700D4E5DE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		90F87ED716FBBC8000D4E5DE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		90F87EDC16FBC21400D4E5DE /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
+		90F87EDD16FBC21400D4E5DE /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
+		90F87EE016FBC24300D4E5DE /* MixerHostAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixerHostAudio.m; sourceTree = "<group>"; };
+		90F87EE116FBC24300D4E5DE /* smbPitchShift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = smbPitchShift.m; sourceTree = "<group>"; };
+		90F87EE216FBC24300D4E5DE /* SNFCoreAudioUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SNFCoreAudioUtils.c; sourceTree = "<group>"; };
+		90F87EE316FBC24300D4E5DE /* SNFCoreAudioUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFCoreAudioUtils.h; sourceTree = "<group>"; };
+		90F87EE716FBC25400D4E5DE /* MixerHostAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixerHostAudio.h; sourceTree = "<group>"; };
+		B9182530148D762600D6064E /* satrus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = satrus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9182534148D762600D6064E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B9182536148D762600D6064E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B9182538148D762600D6064E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B918253C148D762600D6064E /* TemperatureSensor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TemperatureSensor-Info.plist"; sourceTree = "<group>"; };
+		B918253E148D762600D6064E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B9182540148D762600D6064E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B9182542148D762600D6064E /* TemperatureSensor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TemperatureSensor-Prefix.pch"; sourceTree = "<group>"; };
+		B9182543148D762600D6064E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B9182544148D762600D6064E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B9182547148D762600D6064E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B9182549148D762600D6064E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B918254A148D762600D6064E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B9C383721491694000CFD0B5 /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-114.png"; path = "../Icon-114.png"; sourceTree = "<group>"; };
+		B9C383751491694300CFD0B5 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-57.png"; path = "../Icon-57.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B918252D148D762600D6064E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9182535148D762600D6064E /* UIKit.framework in Frameworks */,
+				B9182537148D762600D6064E /* Foundation.framework in Frameworks */,
+				B9182539148D762600D6064E /* CoreGraphics.framework in Frameworks */,
+				90F87EC816FBB9DA00D4E5DE /* AudioToolbox.framework in Frameworks */,
+				90F87ED616FBBC6700D4E5DE /* AVFoundation.framework in Frameworks */,
+				90F87ED816FBBC8000D4E5DE /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		90F87E5016FBB65000D4E5DE /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				90F87EDF16FBC24300D4E5DE /* audiograph */,
+				90F87EDB16FBC21400D4E5DE /* TPCircularBuffer */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		90F87EDB16FBC21400D4E5DE /* TPCircularBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				90F87EDC16FBC21400D4E5DE /* TPCircularBuffer.c */,
+				90F87EDD16FBC21400D4E5DE /* TPCircularBuffer.h */,
+			);
+			path = TPCircularBuffer;
+			sourceTree = "<group>";
+		};
+		90F87EDF16FBC24300D4E5DE /* audiograph */ = {
+			isa = PBXGroup;
+			children = (
+				90F87EE716FBC25400D4E5DE /* MixerHostAudio.h */,
+				90F87EE016FBC24300D4E5DE /* MixerHostAudio.m */,
+				90F87EE116FBC24300D4E5DE /* smbPitchShift.m */,
+				90F87EE216FBC24300D4E5DE /* SNFCoreAudioUtils.c */,
+				90F87EE316FBC24300D4E5DE /* SNFCoreAudioUtils.h */,
+			);
+			path = audiograph;
+			sourceTree = "<group>";
+		};
+		B9182525148D762500D6064E = {
+			isa = PBXGroup;
+			children = (
+				B918253A148D762600D6064E /* TemperatureSensor */,
+				B9182533148D762600D6064E /* Frameworks */,
+				B9182531148D762600D6064E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B9182531148D762600D6064E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9182530148D762600D6064E /* satrus.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B9182533148D762600D6064E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9182534148D762600D6064E /* UIKit.framework */,
+				B9182536148D762600D6064E /* Foundation.framework */,
+				B9182538148D762600D6064E /* CoreGraphics.framework */,
+				90F87EC716FBB9DA00D4E5DE /* AudioToolbox.framework */,
+				90F87ED516FBBC6700D4E5DE /* AVFoundation.framework */,
+				90F87ED716FBBC8000D4E5DE /* Accelerate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B918253A148D762600D6064E /* TemperatureSensor */ = {
+			isa = PBXGroup;
+			children = (
+				90F87E5016FBB65000D4E5DE /* Vendor */,
+				B9182543148D762600D6064E /* AppDelegate.h */,
+				B9182544148D762600D6064E /* AppDelegate.m */,
+				B9182546148D762600D6064E /* MainStoryboard.storyboard */,
+				B9182549148D762600D6064E /* ViewController.h */,
+				B918254A148D762600D6064E /* ViewController.m */,
+				90F8355D17119F5C007CDA62 /* SettingsViewController.h */,
+				90F8355E17119F5C007CDA62 /* SettingsViewController.m */,
+				90B4CA061711BE38009256B4 /* EditInfoViewController.h */,
+				90B4CA071711BE38009256B4 /* EditInfoViewController.m */,
+				90B4CA091711CD98009256B4 /* TemperatureMap.h */,
+				90B4CA0A1711CD98009256B4 /* TemperatureMap.m */,
+				B918253B148D762600D6064E /* Supporting Files */,
+			);
+			path = TemperatureSensor;
+			sourceTree = "<group>";
+		};
+		B918253B148D762600D6064E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B9C383751491694300CFD0B5 /* Icon-57.png */,
+				B9C383721491694000CFD0B5 /* Icon-114.png */,
+				90F8355B17119C81007CDA62 /* Default-568h@2x.png */,
+				B918253C148D762600D6064E /* TemperatureSensor-Info.plist */,
+				B918253D148D762600D6064E /* InfoPlist.strings */,
+				B9182540148D762600D6064E /* main.m */,
+				B9182542148D762600D6064E /* TemperatureSensor-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B918252F148D762600D6064E /* satrus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B918254E148D762600D6064E /* Build configuration list for PBXNativeTarget "satrus" */;
+			buildPhases = (
+				B918252C148D762600D6064E /* Sources */,
+				B918252D148D762600D6064E /* Frameworks */,
+				B918252E148D762600D6064E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = satrus;
+			productName = TemperatureSensor;
+			productReference = B9182530148D762600D6064E /* satrus.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9182527148D762500D6064E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Apple Inc.";
+				TargetAttributes = {
+					B918252F148D762600D6064E = {
+						DevelopmentTeam = P677KX5869;
+					};
+				};
+			};
+			buildConfigurationList = B918252A148D762500D6064E /* Build configuration list for PBXProject "TemperatureSensor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B9182525148D762500D6064E;
+			productRefGroup = B9182531148D762600D6064E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B918252F148D762600D6064E /* satrus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B918252E148D762600D6064E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B918253F148D762600D6064E /* InfoPlist.strings in Resources */,
+				B9182548148D762600D6064E /* MainStoryboard.storyboard in Resources */,
+				B9C383731491694000CFD0B5 /* Icon-114.png in Resources */,
+				B9C383761491694300CFD0B5 /* Icon-57.png in Resources */,
+				90F8355C17119C81007CDA62 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B918252C148D762600D6064E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9182541148D762600D6064E /* main.m in Sources */,
+				B9182545148D762600D6064E /* AppDelegate.m in Sources */,
+				B918254B148D762600D6064E /* ViewController.m in Sources */,
+				90F87EDE16FBC21400D4E5DE /* TPCircularBuffer.c in Sources */,
+				90F87EE416FBC24300D4E5DE /* MixerHostAudio.m in Sources */,
+				90F87EE516FBC24300D4E5DE /* smbPitchShift.m in Sources */,
+				90F87EE616FBC24300D4E5DE /* SNFCoreAudioUtils.c in Sources */,
+				90F8355F17119F5C007CDA62 /* SettingsViewController.m in Sources */,
+				90B4CA081711BE38009256B4 /* EditInfoViewController.m in Sources */,
+				90B4CA0B1711CD98009256B4 /* TemperatureMap.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B918253D148D762600D6064E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B918253E148D762600D6064E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B9182546148D762600D6064E /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9182547148D762600D6064E /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		90F7EDC616FF1189006CC74F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		90F7EDC716FF1189006CC74F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: EVENTS EVOLUTION, INC";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TemperatureSensor/TemperatureSensor-Prefix.pch";
+				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A261EA8-2FA5-40B4-8E44-65462B6923D6";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AdHoc;
+		};
+		B918254C148D762600D6064E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B918254D148D762600D6064E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B918254F148D762600D6064E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TemperatureSensor/TemperatureSensor-Prefix.pch";
+				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B9182550148D762600D6064E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TemperatureSensor/TemperatureSensor-Prefix.pch";
+				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "446B7911-18C4-4068-B911-4977D11D8E16";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B918252A148D762500D6064E /* Build configuration list for PBXProject "TemperatureSensor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B918254C148D762600D6064E /* Debug */,
+				B918254D148D762600D6064E /* Release */,
+				90F7EDC616FF1189006CC74F /* AdHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B918254E148D762600D6064E /* Build configuration list for PBXNativeTarget "satrus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B918254F148D762600D6064E /* Debug */,
+				B9182550148D762600D6064E /* Release */,
+				90F7EDC716FF1189006CC74F /* AdHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B9182527148D762500D6064E /* Project object */;
+}

@@ -1,0 +1,32 @@
+20130324
+========
+Note: initial build
+
+- show frequency from mic
+- play/stop
+- show periodical frequency
+- save results to Documents folder on stop
+
+
+20130324#2
+========
+Note: add new device
+
+- new device: iPhone 5 CDMA+GSM (Igor Baranov)
+
+
+20130407
+========
+Note: temperature map support
+
+- Temperature: add temperature value to saved plist file (according to frequency to temperature map)
+- Settings: you can change acceptable frequency range from 0 to 1000 (default is 100..500)
+- Settings: you can map frequency to temperature
+
+
+20130415
+========
+Note: frequency float value, text fields for min, max frequencies values
+
+- Temperature: float value for frequency
+- Settings: you can change acceptable frequency range from whatever to whatever (you should check min < max yourself)
