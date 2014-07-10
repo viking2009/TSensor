@@ -38,19 +38,20 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editMap:)] autorelease];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults doubleForKey:@"minFrequency"]) {
-        self.minFrequencyTextField.text = [NSString stringWithFormat:@"%.2f", [defaults doubleForKey:@"minFrequency"]];
+    if ([defaults doubleForKey:kMinFrequency]) {
+        self.minFrequencyTextField.text = [NSString stringWithFormat:@"%.2f", [defaults doubleForKey:kMinFrequency]];
     } else {
         self.minFrequencyTextField.text = @"100.00";
     }
     
-    if ([defaults doubleForKey:@"maxFrequency"]) {
-        self.maxFrequencyTextField.text = [NSString stringWithFormat:@"%.2f",[defaults doubleForKey:@"maxFrequency"]];
+    if ([defaults doubleForKey:kMaxFrequency]) {
+        self.maxFrequencyTextField.text = [NSString stringWithFormat:@"%.2f",[defaults doubleForKey:kMaxFrequency]];
     } else {
         self.maxFrequencyTextField.text = @"500.00";
     }
     
     self.considerFrequencyRangeSwitch.on = [defaults boolForKey:@"considerFrequencyRange"];
+    
     [self minFrequencyValueChanged:self.minFrequencyTextField];
     [self maxFrequencyValueChanged:self.maxFrequencyTextField];
     
@@ -231,7 +232,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         self.maxFrequencyLabel.text = [NSString stringWithFormat:@"MAX %.2f", [self.maxFrequencyTextField.text doubleValue]];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setDouble:[self.maxFrequencyTextField.text doubleValue] forKey:@"maxFrequency"];
+        [defaults setDouble:[self.maxFrequencyTextField.text doubleValue] forKey:kMaxFrequency];
         
         if ([defaults synchronize]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyAcceptableRangeDidChangeNotification object:nil];
@@ -247,7 +248,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         self.minFrequencyLabel.text = [NSString stringWithFormat:@"MIN %.2f", [self.minFrequencyTextField.text doubleValue]];
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setDouble:[self.minFrequencyTextField.text doubleValue] forKey:@"minFrequency"];
+        [defaults setDouble:[self.minFrequencyTextField.text doubleValue] forKey:kMinFrequency];
         
         if ([defaults synchronize]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyAcceptableRangeDidChangeNotification object:nil];

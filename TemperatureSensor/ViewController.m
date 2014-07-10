@@ -57,6 +57,7 @@
 #import "TemperatureMap.h"
 
 #define kUpdateTemperatureInterval 1.0
+#define kUpdateInterval @"updateInterval"
 
 NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAudioObjectPlaybackStateDidChangeNotification";
 
@@ -70,9 +71,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 @property (retain, nonatomic) IBOutlet UILabel          *currentTemperatureLabel;
 @property (retain, nonatomic) IBOutlet UITableView      *sensorsTable;
 @property (retain, nonatomic) IBOutlet UIStepper        *intervalStepper;
+@property (retain, nonatomic) IBOutlet UILabel          *intervalStepperValueLabel;
 @property (retain, nonatomic) IBOutlet UIButton         *playButton;
 @property (assign, nonatomic) float minFrequencyValue;
 @property (assign, nonatomic) float maxFrequencyValue;
+@property (assign, nonatomic) BOOL considerFrequency;
 - (IBAction)intervalStepperChanged;
 @end
 
@@ -123,6 +126,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                              object: nil];
 
     [notificationCenter addObserver: self
+                           selector: @selector (handleFrequencyConsiderRangeChanged:)
+                               name: FrequencyConsiderRangeDidChangeNotification
+                             object: nil];
+
+    [notificationCenter addObserver: self
                            selector: @selector (handleFrequencyTemperatureMapChanged:)
                                name: FrequencyTemperatureMapDidChangeNotification
                              object: nil];
@@ -159,6 +167,15 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 {
     [super viewDidLoad];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults doubleForKey:kUpdateInterval]) {
+        self.intervalStepperValueLabel.text = [NSString stringWithFormat:@"%.2f", [defaults doubleForKey:kUpdateInterval]];
+    } else {
+        self.intervalStepperValueLabel.text = @"1.00";
+    }
+    
+    self.intervalStepper.value = [self.intervalStepperValueLabel.text doubleValue];
+        
     connectedServices = [NSMutableArray new];
     temperatures = [NSMutableArray new];
     
@@ -170,6 +187,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [self initializeMixerSettingsToUI];
     
     [self handleFrequencyAcceptableRangeChanged:nil];
+    [self handleFrequencyConsiderRangeChanged:nil];
     [self handleFrequencyTemperatureMapChanged:[NSNotification notificationWithName:FrequencyTemperatureMapDidChangeNotification object:[TemperatureMap sharedMap].items]];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(showSettings:)] autorelease];
@@ -248,6 +266,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     
     [self setAudioObject:nil];
     
+    [self setIntervalStepperValueLabel:nil];
     [super viewDidUnload];
 }
 
@@ -280,6 +299,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [audioObject release];
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
 
+    [_intervalStepperValueLabel release];
     [super dealloc];
 }
 
@@ -341,6 +361,15 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 /** Increase or decrease the maximum alarm setting */
 - (IBAction) intervalStepperChanged
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setDouble:self.intervalStepper.value forKey:kUpdateInterval];
+    
+    if ([defaults synchronize]) {
+        self.intervalStepperValueLabel.text = [NSString stringWithFormat:@"%.2f", self.intervalStepper.value];
+    }
+    
+    NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+
     if (audioObject.isPlaying) {
         
         if ([self.timer isValid]) {
@@ -383,7 +412,6 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 	currentTemperatureLabel.text = frequencyValue;
     
     // update table data
-    if ([[timer userInfo] displayInputFrequency] >= self.minFrequencyValue && [[timer userInfo] displayInputFrequency] <= self.maxFrequencyValue) {
     if (([[timer userInfo] displayInputFrequency] >= self.minFrequencyValue && [[timer userInfo] displayInputFrequency] <= self.maxFrequencyValue) || !self.considerFrequency) {
         [sensorsTable beginUpdates];
         [temperatures addObject:@{ @"date": date, @"frequency": frequencyValue, @"temperature" : temperatureValue}];
@@ -475,14 +503,14 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
 - (void) handleFrequencyAcceptableRangeChanged: (id) notification
 {    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults doubleForKey:@"minFrequency"]) {
-        self.minFrequencyValue = [defaults doubleForKey:@"minFrequency"];
+    if ([defaults doubleForKey:kMinFrequency]) {
+        self.minFrequencyValue = [defaults doubleForKey:kMinFrequency];
     } else {
         self.minFrequencyValue = 100.00;
     }
     
-    if ([defaults doubleForKey:@"maxFrequency"]) {
-        self.maxFrequencyValue = [defaults doubleForKey:@"maxFrequency"];
+    if ([defaults doubleForKey:kMaxFrequency]) {
+        self.maxFrequencyValue = [defaults doubleForKey:kMaxFrequency];
     } else {
         self.maxFrequencyValue = 500.00;
     }
