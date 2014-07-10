@@ -384,6 +384,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     
     // update table data
     if ([[timer userInfo] displayInputFrequency] >= self.minFrequencyValue && [[timer userInfo] displayInputFrequency] <= self.maxFrequencyValue) {
+    if (([[timer userInfo] displayInputFrequency] >= self.minFrequencyValue && [[timer userInfo] displayInputFrequency] <= self.maxFrequencyValue) || !self.considerFrequency) {
         [sensorsTable beginUpdates];
         [temperatures addObject:@{ @"date": date, @"frequency": frequencyValue, @"temperature" : temperatureValue}];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[temperatures count] - 1 inSection:0];
@@ -487,6 +488,14 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
     }
     
     NSLog(@"handleFrequencyAcceptableRangeChanged: minValue = %f, maxValue = %f", self.minFrequencyValue, self.maxFrequencyValue);
+}
+
+- (void) handleFrequencyConsiderRangeChanged: (id) notification
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.considerFrequency = [defaults boolForKey:kConsiderFrequencyRange];
+    
+    NSLog(@"handleFrequencyConsiderRangeChanged: considerFrequency = %i", self.considerFrequency);
 }
 
 - (void) handleFrequencyTemperatureMapChanged: (NSNotification*) notification

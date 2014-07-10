@@ -50,6 +50,7 @@
         self.maxFrequencyTextField.text = @"500.00";
     }
     
+    self.considerFrequencyRangeSwitch.on = [defaults boolForKey:@"considerFrequencyRange"];
     [self minFrequencyValueChanged:self.minFrequencyTextField];
     [self maxFrequencyValueChanged:self.maxFrequencyTextField];
     
@@ -69,6 +70,7 @@
     [_temperatureMap release];
     [_minFrequencyTextField release];
     [_maxFrequencyTextField release];
+    [_considerFrequencyRangeSwitch release];
     [super dealloc];
 }
 
@@ -78,6 +80,7 @@
     [self setTableView:nil];
     [self setMinFrequencyTextField:nil];
     [self setMaxFrequencyTextField:nil];
+    [self setConsiderFrequencyRangeSwitch:nil];
     [super viewDidUnload];
 }
 
@@ -250,6 +253,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyAcceptableRangeDidChangeNotification object:nil];
         }
         
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+    }
+}
+
+- (IBAction)considerFrequencyRangeSwitchValueChanged:(id)sender {
+    if (sender == self.considerFrequencyRangeSwitch) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:self.considerFrequencyRangeSwitch.on forKey:@"considerFrequencyRange"];
+
+        if ([defaults synchronize]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyConsiderRangeDidChangeNotification object:nil];
+        }
+
         NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
     }
 }
