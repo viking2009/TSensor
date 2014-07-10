@@ -10,7 +10,7 @@ Note: initial build
 
 20130324#2
 ========
-Note: add new device
+Note: added new device
 
 - new device: iPhone 5 CDMA+GSM (Igor Baranov)
 
@@ -32,7 +32,7 @@ Note: frequency float value, text fields for min, max frequencies values
 - Settings: you can change acceptable frequency range from whatever to whatever (you should check min < max yourself)
 
 
-20130710
+20140710
 ========
 Note: time interval for reporting, consider frequency range
 
@@ -43,3 +43,10 @@ Feature #78: Сhange time interval for reporting
 – save & restore stepper value
 Feature #79: Option to consider the frequency range
 - change and save consider value
+
+
+20140711
+========
+Note: added new device
+
+- new device: iPod Touch 5th Gen (Igor Baranov)
