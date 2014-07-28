@@ -316,7 +316,7 @@
 				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "63621595-7A88-4A3C-906C-40A4E623C5C2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "005170EF-91FD-4A39-9CAE-C3D0205F08D5";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -385,7 +385,7 @@
 				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "63621595-7A88-4A3C-906C-40A4E623C5C2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "005170EF-91FD-4A39-9CAE-C3D0205F08D5";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -401,7 +401,7 @@
 				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "63621595-7A88-4A3C-906C-40A4E623C5C2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "005170EF-91FD-4A39-9CAE-C3D0205F08D5";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};

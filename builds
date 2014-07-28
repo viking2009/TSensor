@@ -50,3 +50,15 @@ Feature #79: Option to consider the frequency range
 Note: added new device
 
 - new device: iPod Touch 5th Gen (Igor Baranov)
+
+
+20140728
+========
+Note: added new device
+
+- new device: iPhone 4S (Mykola Vyshynskyi)
+
+Feature #78: Сhange time interval for reporting
+- move steppers to settings page
+- display average value for display interval
+

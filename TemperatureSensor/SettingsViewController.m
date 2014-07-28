@@ -52,8 +52,25 @@
     
     self.considerFrequencyRangeSwitch.on = [defaults boolForKey:@"considerFrequencyRange"];
     
+    if ([defaults doubleForKey:kMeasurementFrequency]) {
+        self.measurementValueLabel.text = [NSString stringWithFormat:@"%.1f",[defaults doubleForKey:kMeasurementFrequency]];
+    } else {
+        self.measurementValueLabel.text = @"1";
+    }
+    
+    if ([defaults doubleForKey:kDisplayFrequency]) {
+        self.displayValueLabel.text = [NSString stringWithFormat:@"%.f",[defaults doubleForKey:kDisplayFrequency]];
+    } else {
+        self.displayValueLabel.text = @"1";
+    }
+    
+    self.measurementStepper.value = [self.measurementValueLabel.text doubleValue];
+    self.displayStepper.value = [self.displayValueLabel.text doubleValue];
+
     [self minFrequencyValueChanged:self.minFrequencyTextField];
     [self maxFrequencyValueChanged:self.maxFrequencyTextField];
+    [self measurementValueChanged:self.measurementStepper];
+    [self displayValueChanged:self.displayStepper];
     
     self.tableView.allowsSelectionDuringEditing = YES;
 }
@@ -72,6 +89,10 @@
     [_minFrequencyTextField release];
     [_maxFrequencyTextField release];
     [_considerFrequencyRangeSwitch release];
+    [_measurementStepper release];
+    [_displayStepper release];
+    [_measurementValueLabel release];
+    [_displayValueLabel release];
     [super dealloc];
 }
 
@@ -82,6 +103,10 @@
     [self setMinFrequencyTextField:nil];
     [self setMaxFrequencyTextField:nil];
     [self setConsiderFrequencyRangeSwitch:nil];
+    [self setMeasurementStepper:nil];
+    [self setDisplayStepper:nil];
+    [self setMeasurementValueLabel:nil];
+    [self setDisplayValueLabel:nil];
     [super viewDidUnload];
 }
 
@@ -229,12 +254,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 {
     NSLog(@"sender = %@", sender);
     if (sender == self.maxFrequencyTextField) {
-        self.maxFrequencyLabel.text = [NSString stringWithFormat:@"MAX %.2f", [self.maxFrequencyTextField.text doubleValue]];
-        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setDouble:[self.maxFrequencyTextField.text doubleValue] forKey:kMaxFrequency];
         
         if ([defaults synchronize]) {
+            self.maxFrequencyLabel.text = [NSString stringWithFormat:@"MAX %.2f", [self.maxFrequencyTextField.text doubleValue]];
+
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyAcceptableRangeDidChangeNotification object:nil];
         }
 
@@ -245,12 +270,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (IBAction)minFrequencyValueChanged:(id)sender
 {
     if (sender == self.minFrequencyTextField) {
-        self.minFrequencyLabel.text = [NSString stringWithFormat:@"MIN %.2f", [self.minFrequencyTextField.text doubleValue]];
-
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setDouble:[self.minFrequencyTextField.text doubleValue] forKey:kMinFrequency];
         
         if ([defaults synchronize]) {
+            self.minFrequencyLabel.text = [NSString stringWithFormat:@"MIN %.2f", [self.minFrequencyTextField.text doubleValue]];
+
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyAcceptableRangeDidChangeNotification object:nil];
         }
         
@@ -261,12 +286,40 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (IBAction)considerFrequencyRangeSwitchValueChanged:(id)sender {
     if (sender == self.considerFrequencyRangeSwitch) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:self.considerFrequencyRangeSwitch.on forKey:@"considerFrequencyRange"];
+        [defaults setBool:self.considerFrequencyRangeSwitch.on forKey:kConsiderFrequencyRange];
 
         if ([defaults synchronize]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyConsiderRangeDidChangeNotification object:nil];
         }
 
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+    }
+}
+
+- (IBAction)measurementValueChanged:(id)sender {
+    if (sender == self.measurementStepper) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setDouble:self.measurementStepper.value forKey:kMeasurementFrequency];
+        
+        if ([defaults synchronize]) {
+            self.measurementValueLabel.text = [NSString stringWithFormat:@"%.1f", self.measurementStepper.value];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyMeasurementIntervalDidChangeNotification object:nil];
+        }
+        
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+    }
+}
+
+- (IBAction)displayValueChanged:(id)sender {
+    if (sender == self.displayStepper) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setDouble:self.displayStepper.value forKey:kDisplayFrequency];
+        
+        if ([defaults synchronize]) {
+            self.displayValueLabel.text = [NSString stringWithFormat:@"%.f", self.displayStepper.value];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FrequencyDisplayIntervalDidChangeNotification object:nil];
+        }
+        
         NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
     }
 }
