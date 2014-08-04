@@ -387,8 +387,8 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     NSDictionary *temperatureInfo = temperatures[indexPath.row];
     NSString *value = [NSString stringWithFormat:@"%@ (%@)", temperatureInfo[@"frequency"], temperatureInfo[@"temperature"]];
     
-    [[cell textLabel] setText:value];
-    [[cell detailTextLabel] setText:temperatureInfo[@"date"]];
+    cell.textLabel.text = value;
+    cell.detailTextLabel.text = temperatureInfo[@"date"];
     
 	return cell;
 }
@@ -458,7 +458,13 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     //	float z = [[timer userInfo] frequency];
     //    UInt32 y = [[timer userInfo] micLevel];
     
-    NSString *date = [NSString stringWithFormat:@"%@", [timer fireDate]];
+    static NSDateFormatter *df = nil;
+    if (!df) {
+        df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"YYYY-MM-dd HH:mm:ss.S"];
+    }
+
+    NSDate *date = [df stringFromDate:[timer fireDate]];
     NSString *displayFormat = [NSString stringWithFormat:@"%%.%uf", self.state.numberOfDigits];
     NSString *frequencyValue = [NSString stringWithFormat:displayFormat,
                                 [[timer userInfo] displayInputFrequency]];

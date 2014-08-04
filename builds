@@ -66,6 +66,9 @@ Feature #78: Сhange time interval for reporting
 ========
 Note: project renamed to TSensor
 
+Feature #78: Сhange time interval for reporting
+- fixed default values for measurement and display frequencies
+- better time formatting for visual report
 Feature #80 Option to change number of decimal digits
 - stepper for decimal digits, default value 2
 Feature #81 Option to use average value
