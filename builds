@@ -66,6 +66,6 @@ Feature #78: Сhange time interval for reporting
 ========
 Note: project renamed to TSensor
 
+Feature #80 Option to change number of decimal digits
+- stepper for decimal digits, default value 2
 Task #82 Synchronise gray label text with table list
-
-Failed to add file TemperatureSensor/TSensor-Info.plist to index.

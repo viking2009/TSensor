@@ -63,14 +63,22 @@
     } else {
         self.displayValueLabel.text = @"1";
     }
-    
+
+    if ([defaults doubleForKey:kDecimalDigits]) {
+        self.decimalDigitsValueLabel.text = [NSString stringWithFormat:@"%.f",[defaults doubleForKey:kDecimalDigits]];
+    } else {
+        self.decimalDigitsValueLabel.text = @"2";
+    }
+
     self.measurementStepper.value = [self.measurementValueLabel.text doubleValue];
     self.displayStepper.value = [self.displayValueLabel.text doubleValue];
+    self.decimalDigitsStepper.value = [self.decimalDigitsValueLabel.text doubleValue];
 
     [self minFrequencyValueChanged:self.minFrequencyTextField];
     [self maxFrequencyValueChanged:self.maxFrequencyTextField];
     [self measurementValueChanged:self.measurementStepper];
     [self displayValueChanged:self.displayStepper];
+    [self decimalDigitsChanged:self.decimalDigitsStepper];
     
     self.tableView.allowsSelectionDuringEditing = YES;
 }
@@ -91,8 +99,10 @@
     [_considerFrequencyRangeSwitch release];
     [_measurementStepper release];
     [_displayStepper release];
+    [_decimalDigitsStepper release];
     [_measurementValueLabel release];
     [_displayValueLabel release];
+    [_decimalDigitsValueLabel release];
     [super dealloc];
 }
 
@@ -105,8 +115,10 @@
     [self setConsiderFrequencyRangeSwitch:nil];
     [self setMeasurementStepper:nil];
     [self setDisplayStepper:nil];
+    [self setDecimalDigitsStepper:nil];
     [self setMeasurementValueLabel:nil];
     [self setDisplayValueLabel:nil];
+    [self setDecimalDigitsValueLabel:nil];
     [super viewDidUnload];
 }
 
@@ -322,6 +334,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         
         NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
     }
+}
+
+- (IBAction)decimalDigitsChanged:(id)sender {
+    if (sender == self.decimalDigitsStepper) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setDouble:self.decimalDigitsStepper.value forKey:kDecimalDigits];
+        
+        if ([defaults synchronize]) {
+            self.decimalDigitsValueLabel.text = [NSString stringWithFormat:@"%.f", self.decimalDigitsStepper.value];
+            [[NSNotificationCenter defaultCenter] postNotificationName:DecimalDigitsDidChangeNotification object:nil];
+        }
+        
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+    }
+
 }
 
 - (void)editMap:(id)sender {

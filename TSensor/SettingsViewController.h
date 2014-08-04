@@ -13,12 +13,14 @@
 #define FrequencyTemperatureMapDidChangeNotification @"FrequencyTemperatureMapDidChangeNotification"
 #define FrequencyMeasurementIntervalDidChangeNotification @"FrequencyMeasurementIntervalDidChangeNotification"
 #define FrequencyDisplayIntervalDidChangeNotification @"FrequencyDisplayIntervalDidChangeNotification"
+#define DecimalDigitsDidChangeNotification @"DecimalDigitsDidChangeNotification"
 
 #define kMinFrequency @"minFrequency"
 #define kMaxFrequency @"maxFrequency"
 #define kConsiderFrequencyRange @"considerFrequencyRange"
 #define kMeasurementFrequency @"measurementFrequency"
 #define kDisplayFrequency @"displayFrequency"
+#define kDecimalDigits @"decimalDigits"
 
 @interface SettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -30,13 +32,16 @@
 @property (retain, nonatomic) IBOutlet UISwitch *considerFrequencyRangeSwitch;
 @property (retain, nonatomic) IBOutlet UIStepper *measurementStepper;
 @property (retain, nonatomic) IBOutlet UIStepper *displayStepper;
+@property (retain, nonatomic) IBOutlet UIStepper *decimalDigitsStepper;
 @property (retain, nonatomic) IBOutlet UILabel *measurementValueLabel;
 @property (retain, nonatomic) IBOutlet UILabel *displayValueLabel;
+@property (retain, nonatomic) IBOutlet UILabel *decimalDigitsValueLabel;
 
 - (IBAction)minFrequencyValueChanged:(id)sender;
 - (IBAction)maxFrequencyValueChanged:(id)sender;
 - (IBAction)considerFrequencyRangeSwitchValueChanged:(id)sender;
 - (IBAction)measurementValueChanged:(id)sender;
 - (IBAction)displayValueChanged:(id)sender;
+- (IBAction)decimalDigitsChanged:(id)sender;
 
 @end

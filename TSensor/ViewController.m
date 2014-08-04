@@ -66,6 +66,7 @@ typedef struct TSState {
     double displayFrequecy;
     NSUInteger steps;
     double freqSum;
+    unsigned int numberOfDigits;
 } TSState;
 
 
@@ -148,6 +149,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                                name: FrequencyDisplayIntervalDidChangeNotification
                              object: nil];
 
+    [notificationCenter addObserver: self
+                           selector: @selector (handleDecimalDigitsChanged:)
+                               name: DecimalDigitsDidChangeNotification
+                             object: nil];
+
 }
 
 
@@ -194,6 +200,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [self handleFrequencyConsiderRangeChanged:nil];
     [self handleMeasurementIntervalChanged:nil];
     [self handleDisplayIntervalChanged:nil];
+    [self handleDecimalDigitsChanged:nil];
     [self handleFrequencyTemperatureMapChanged:[NSNotification notificationWithName:FrequencyTemperatureMapDidChangeNotification object:[TemperatureMap sharedMap].items]];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(showSettings:)] autorelease];
@@ -277,6 +284,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: FrequencyDisplayIntervalDidChangeNotification
                                                   object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: DecimalDigitsDidChangeNotification
+                                                  object: nil];
     
     [self setAudioObject:nil];
     
@@ -315,6 +325,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                                                   object: nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: FrequencyDisplayIntervalDidChangeNotification
+                                                  object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: DecimalDigitsDidChangeNotification
                                                   object: nil];
     
     [audioObject release];
@@ -425,7 +438,8 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     //    UInt32 y = [[timer userInfo] micLevel];
     
     NSString *date = [NSString stringWithFormat:@"%@", [timer fireDate]];
-    NSString *frequencyValue = [NSString stringWithFormat:@"%.2f",
+    NSString *displayFormat = [NSString stringWithFormat:@"%%.%uf", self.state.numberOfDigits];
+    NSString *frequencyValue = [NSString stringWithFormat:displayFormat,
                                 [[timer userInfo] displayInputFrequency]];
     NSLog(@"displayInputFrequency = %@", frequencyValue);
     
@@ -439,7 +453,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     // update table data if needed
     if (state.steps * state.measurementFrequency >= state.displayFrequecy) {
         double freqAvg = state.freqSum/state.steps;
-        frequencyValue = [NSString stringWithFormat:@"%.2f", freqAvg];
+        frequencyValue = [NSString stringWithFormat:displayFormat, freqAvg];
         
         NSString *temperatureValue = self.temperatureMap[frequencyValue]?:@"not set";
         
@@ -576,6 +590,22 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
     
     NSLog(@"handleFrequencyConsiderRangeChanged: considerFrequency = %i", self.state.considerFrequency);
 }
+
+- (void) handleDecimalDigitsChanged: (id) notification
+{
+    TSState state = self.state;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults doubleForKey:kDecimalDigits]) {
+        state.numberOfDigits = [defaults doubleForKey:kDecimalDigits];
+    } else {
+        state.numberOfDigits = 2;
+    }
+
+    self.state = state;
+    
+    NSLog(@"handleDecimalDigitsChanged: numberOfDigits = %u", self.state.numberOfDigits);
+}
+
 
 - (void) handleFrequencyTemperatureMapChanged: (NSNotification*) notification
 {
