@@ -52,10 +52,10 @@
 		B9182534148D762600D6064E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B9182536148D762600D6064E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B9182538148D762600D6064E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B918253C148D762600D6064E /* TemperatureSensor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TemperatureSensor-Info.plist"; sourceTree = "<group>"; };
+		B918253C148D762600D6064E /* TSensor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TSensor-Info.plist"; sourceTree = "<group>"; };
 		B918253E148D762600D6064E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B9182540148D762600D6064E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B9182542148D762600D6064E /* TemperatureSensor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TemperatureSensor-Prefix.pch"; sourceTree = "<group>"; };
+		B9182542148D762600D6064E /* TSensor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TSensor-Prefix.pch"; sourceTree = "<group>"; };
 		B9182543148D762600D6064E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B9182544148D762600D6064E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B9182547148D762600D6064E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		B9182525148D762500D6064E = {
 			isa = PBXGroup;
 			children = (
-				B918253A148D762600D6064E /* TemperatureSensor */,
+				B918253A148D762600D6064E /* TSensor */,
 				B9182533148D762600D6064E /* Frameworks */,
 				B9182531148D762600D6064E /* Products */,
 			);
@@ -142,7 +142,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B918253A148D762600D6064E /* TemperatureSensor */ = {
+		B918253A148D762600D6064E /* TSensor */ = {
 			isa = PBXGroup;
 			children = (
 				90F87E5016FBB65000D4E5DE /* Vendor */,
@@ -159,7 +159,7 @@
 				90B4CA0A1711CD98009256B4 /* TemperatureMap.m */,
 				B918253B148D762600D6064E /* Supporting Files */,
 			);
-			path = TemperatureSensor;
+			path = TSensor;
 			sourceTree = "<group>";
 		};
 		B918253B148D762600D6064E /* Supporting Files */ = {
@@ -168,10 +168,10 @@
 				B9C383751491694300CFD0B5 /* Icon-57.png */,
 				B9C383721491694000CFD0B5 /* Icon-114.png */,
 				90F8355B17119C81007CDA62 /* Default-568h@2x.png */,
-				B918253C148D762600D6064E /* TemperatureSensor-Info.plist */,
+				B918253C148D762600D6064E /* TSensor-Info.plist */,
 				B918253D148D762600D6064E /* InfoPlist.strings */,
 				B9182540148D762600D6064E /* main.m */,
-				B9182542148D762600D6064E /* TemperatureSensor-Prefix.pch */,
+				B9182542148D762600D6064E /* TSensor-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -179,9 +179,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B918252F148D762600D6064E /* satrus */ = {
+		B918252F148D762600D6064E /* TSensor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B918254E148D762600D6064E /* Build configuration list for PBXNativeTarget "satrus" */;
+			buildConfigurationList = B918254E148D762600D6064E /* Build configuration list for PBXNativeTarget "TSensor" */;
 			buildPhases = (
 				B918252C148D762600D6064E /* Sources */,
 				B918252D148D762600D6064E /* Frameworks */,
@@ -191,7 +191,7 @@
 			);
 			dependencies = (
 			);
-			name = satrus;
+			name = TSensor;
 			productName = TemperatureSensor;
 			productReference = B9182530148D762600D6064E /* satrus.app */;
 			productType = "com.apple.product-type.application";
@@ -202,7 +202,7 @@
 		B9182527148D762500D6064E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Apple Inc.";
 				TargetAttributes = {
 					B918252F148D762600D6064E = {
@@ -210,7 +210,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B918252A148D762500D6064E /* Build configuration list for PBXProject "TemperatureSensor" */;
+			buildConfigurationList = B918252A148D762500D6064E /* Build configuration list for PBXProject "TSensor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -222,7 +222,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B918252F148D762600D6064E /* satrus */,
+				B918252F148D762600D6064E /* TSensor */,
 			);
 		};
 /* End PBXProject section */
@@ -286,8 +286,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -295,11 +296,14 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -312,9 +316,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TemperatureSensor/TemperatureSensor-Prefix.pch";
-				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = "TSensor/TSensor-Prefix.pch";
+				INFOPLIST_FILE = "TSensor/TSensor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "005170EF-91FD-4A39-9CAE-C3D0205F08D5";
 				SDKROOT = iphoneos;
@@ -326,8 +330,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -342,11 +347,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -355,8 +364,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -364,11 +374,14 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -381,9 +394,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TemperatureSensor/TemperatureSensor-Prefix.pch";
-				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = "TSensor/TSensor-Prefix.pch";
+				INFOPLIST_FILE = "TSensor/TSensor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "005170EF-91FD-4A39-9CAE-C3D0205F08D5";
 				SDKROOT = iphoneos;
@@ -397,9 +410,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kirill Rozhkovskiy (F2MA724GHH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TemperatureSensor/TemperatureSensor-Prefix.pch";
-				INFOPLIST_FILE = "TemperatureSensor/TemperatureSensor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				GCC_PREFIX_HEADER = "TSensor/TSensor-Prefix.pch";
+				INFOPLIST_FILE = "TSensor/TSensor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "005170EF-91FD-4A39-9CAE-C3D0205F08D5";
 				SDKROOT = iphoneos;
@@ -410,7 +423,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B918252A148D762500D6064E /* Build configuration list for PBXProject "TemperatureSensor" */ = {
+		B918252A148D762500D6064E /* Build configuration list for PBXProject "TSensor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B918254C148D762600D6064E /* Debug */,
@@ -420,7 +433,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B918254E148D762600D6064E /* Build configuration list for PBXNativeTarget "satrus" */ = {
+		B918254E148D762600D6064E /* Build configuration list for PBXNativeTarget "TSensor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B918254F148D762600D6064E /* Debug */,

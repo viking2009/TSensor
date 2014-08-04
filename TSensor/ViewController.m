@@ -429,8 +429,6 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                                 [[timer userInfo] displayInputFrequency]];
     NSLog(@"displayInputFrequency = %@", frequencyValue);
     
-    currentTemperatureLabel.text = frequencyValue;
-
     TSState state = self.state;
     
     state.steps += 1;
@@ -451,6 +449,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
         self.state = state;
 
         if ((freqAvg >= self.state.minFrequencyValue && freqAvg <= self.state.maxFrequencyValue) || !self.state.considerFrequency) {
+            // Task #82 Synchronise gray label text with table list
+            currentTemperatureLabel.text = frequencyValue;
+
             [sensorsTable beginUpdates];
             [temperatures addObject:@{ @"date": date, @"frequency": frequencyValue, @"temperature" : temperatureValue}];
             NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[temperatures count] - 1 inSection:0];

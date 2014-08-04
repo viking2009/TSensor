@@ -62,3 +62,10 @@ Feature #78: Сhange time interval for reporting
 - move steppers to settings page
 - display average value for display interval
 
+20140804
+========
+Note: project renamed to TSensor
+
+Task #82 Synchronise gray label text with table list
+
+Failed to add file TemperatureSensor/TSensor-Info.plist to index.
