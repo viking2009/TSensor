@@ -50,7 +50,7 @@
         self.maxFrequencyTextField.text = @"500.00";
     }
     
-    self.considerFrequencyRangeSwitch.on = [defaults boolForKey:@"considerFrequencyRange"];
+    self.considerFrequencyRangeSwitch.on = [defaults boolForKey:kConsiderFrequencyRange];
     
     if ([defaults doubleForKey:kMeasurementFrequency]) {
         self.measurementValueLabel.text = [NSString stringWithFormat:@"%.1f",[defaults doubleForKey:kMeasurementFrequency]];
@@ -74,11 +74,14 @@
     self.displayStepper.value = [self.displayValueLabel.text doubleValue];
     self.decimalDigitsStepper.value = [self.decimalDigitsValueLabel.text doubleValue];
 
+    self.useAverageValueSwitch.on = [defaults boolForKey:kUseAverageValue];
+
     [self minFrequencyValueChanged:self.minFrequencyTextField];
     [self maxFrequencyValueChanged:self.maxFrequencyTextField];
     [self measurementValueChanged:self.measurementStepper];
     [self displayValueChanged:self.displayStepper];
     [self decimalDigitsChanged:self.decimalDigitsStepper];
+    [self useAverageValueSwitchValueChanged:self.useAverageValueSwitch];
     
     self.tableView.allowsSelectionDuringEditing = YES;
 }
@@ -103,6 +106,7 @@
     [_measurementValueLabel release];
     [_displayValueLabel release];
     [_decimalDigitsValueLabel release];
+    [_useAverageValueSwitch release];
     [super dealloc];
 }
 
@@ -119,6 +123,7 @@
     [self setMeasurementValueLabel:nil];
     [self setDisplayValueLabel:nil];
     [self setDecimalDigitsValueLabel:nil];
+    [self setUseAverageValueSwitch:nil];
     [super viewDidUnload];
 }
 
@@ -349,6 +354,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
     }
 
+}
+
+- (IBAction)useAverageValueSwitchValueChanged:(id)sender {
+    if (sender == self.useAverageValueSwitch) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:self.useAverageValueSwitch.on forKey:kUseAverageValue];
+        
+        if ([defaults synchronize]) {
+            self.displayStepper.enabled = self.useAverageValueSwitch.on;
+            self.displayValueLabel.enabled = self.useAverageValueSwitch.on;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:UseAverageValueChangeNotification object:nil];
+        }
+        
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+    }
 }
 
 - (void)editMap:(id)sender {

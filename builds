@@ -68,4 +68,6 @@ Note: project renamed to TSensor
 
 Feature #80 Option to change number of decimal digits
 - stepper for decimal digits, default value 2
+Feature #81 Option to use average value
+- switch to use average value, off by default
 Task #82 Synchronise gray label text with table list

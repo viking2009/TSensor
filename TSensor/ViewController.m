@@ -67,6 +67,7 @@ typedef struct TSState {
     NSUInteger steps;
     double freqSum;
     unsigned int numberOfDigits;
+    BOOL useAverageValue;
 } TSState;
 
 
@@ -154,6 +155,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                                name: DecimalDigitsDidChangeNotification
                              object: nil];
 
+    [notificationCenter addObserver: self
+                           selector: @selector (handleUseAverageValueChanged:)
+                               name: UseAverageValueChangeNotification
+                             object: nil];
+
 }
 
 
@@ -201,6 +207,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [self handleMeasurementIntervalChanged:nil];
     [self handleDisplayIntervalChanged:nil];
     [self handleDecimalDigitsChanged:nil];
+    [self handleUseAverageValueChanged:nil];
     [self handleFrequencyTemperatureMapChanged:[NSNotification notificationWithName:FrequencyTemperatureMapDidChangeNotification object:[TemperatureMap sharedMap].items]];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(showSettings:)] autorelease];
@@ -287,6 +294,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: DecimalDigitsDidChangeNotification
                                                   object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: UseAverageValueChangeNotification
+                                                  object: nil];
     
     [self setAudioObject:nil];
     
@@ -328,6 +338,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                                                   object: nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: DecimalDigitsDidChangeNotification
+                                                  object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: UseAverageValueChangeNotification
                                                   object: nil];
     
     [audioObject release];
@@ -459,7 +472,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     self.state = state;
 
     // update table data if needed
-    if (state.steps * state.measurementFrequency >= state.displayFrequecy) {
+    if (state.steps * state.measurementFrequency >= state.displayFrequecy || !self.state.useAverageValue) {
         double freqAvg = state.freqSum/state.steps;
         frequencyValue = [NSString stringWithFormat:displayFormat, freqAvg];
         
@@ -614,6 +627,16 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
     NSLog(@"handleDecimalDigitsChanged: numberOfDigits = %u", self.state.numberOfDigits);
 }
 
+- (void) handleUseAverageValueChanged: (id) notification
+{
+    TSState state = self.state;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    state.useAverageValue = [defaults boolForKey:kUseAverageValue];
+    
+    self.state = state;
+    
+    NSLog(@"handleUseAverageValueChanged: useAverageValue = %i", self.state.useAverageValue);
+}
 
 - (void) handleFrequencyTemperatureMapChanged: (NSNotification*) notification
 {
