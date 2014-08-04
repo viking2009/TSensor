@@ -395,7 +395,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 - (void) handleMeasurementIntervalChanged:(NSNotification *)notification {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     TSState state = self.state;
-    state.measurementFrequency = [defaults doubleForKey:kMeasurementFrequency];
+    if ([defaults doubleForKey:kMeasurementFrequency]) {
+        state.measurementFrequency = [defaults doubleForKey:kMeasurementFrequency];
+    } else {
+        state.measurementFrequency = 1.0;
+    }
     self.state = state;
     
     NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
@@ -419,7 +423,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
 - (void)handleDisplayIntervalChanged:(NSNotification *)notification {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     TSState state = self.state;
-    state.displayFrequecy = [defaults doubleForKey:kDisplayFrequency];
+    if ([defaults doubleForKey:kDisplayFrequency]) {
+        state.displayFrequecy = [defaults doubleForKey:kDisplayFrequency];
+    } else {
+        state.displayFrequecy = 1.0;
+    }
     self.state = state;
 }
 
