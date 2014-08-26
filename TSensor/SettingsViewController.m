@@ -75,6 +75,9 @@
     self.decimalDigitsStepper.value = [self.decimalDigitsValueLabel.text doubleValue];
 
     self.useAverageValueSwitch.on = [defaults boolForKey:kUseAverageValue];
+    
+    NSNumber *useMinFrequency = [defaults objectForKey:kUseMinFrequency];
+    self.useMinFrequencySwitch.on = useMinFrequency ? [useMinFrequency boolValue] : YES;
 
     [self minFrequencyValueChanged:self.minFrequencyTextField];
     [self maxFrequencyValueChanged:self.maxFrequencyTextField];
@@ -82,6 +85,7 @@
     [self displayValueChanged:self.displayStepper];
     [self decimalDigitsChanged:self.decimalDigitsStepper];
     [self useAverageValueSwitchValueChanged:self.useAverageValueSwitch];
+    [self useMinFrequencySwitchValueChanged:self.useMinFrequencySwitch];
     
     self.tableView.allowsSelectionDuringEditing = YES;
 }
@@ -107,6 +111,7 @@
     [_displayValueLabel release];
     [_decimalDigitsValueLabel release];
     [_useAverageValueSwitch release];
+    [_useMinFrequencySwitch release];
     [super dealloc];
 }
 
@@ -366,6 +371,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             self.displayValueLabel.enabled = self.useAverageValueSwitch.on;
             
             [[NSNotificationCenter defaultCenter] postNotificationName:UseAverageValueChangeNotification object:nil];
+        }
+        
+        NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+    }
+}
+
+- (IBAction)useMinFrequencySwitchValueChanged:(id)sender {
+    if (sender == self.useMinFrequencySwitch) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@(self.useMinFrequencySwitch.on) forKey:kUseMinFrequency];
+        
+        if ([defaults synchronize]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UseMinFrequencyValueChangeNotification object:nil];
         }
         
         NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);

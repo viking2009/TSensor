@@ -63,11 +63,12 @@ typedef struct TSState {
     double maxFrequencyValue;
     BOOL considerFrequency;
     double measurementFrequency;
-    double displayFrequecy;
+    double displayFrequency;
     NSUInteger steps;
     double freqSum;
     unsigned int numberOfDigits;
     BOOL useAverageValue;
+    BOOL useMinFrequency;
 } TSState;
 
 
@@ -160,6 +161,10 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                                name: UseAverageValueChangeNotification
                              object: nil];
 
+    [notificationCenter addObserver: self
+                           selector: @selector (handleUseMinFrequencyValueChanged:)
+                               name: UseMinFrequencyValueChangeNotification
+                             object: nil];
 }
 
 
@@ -208,6 +213,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [self handleDisplayIntervalChanged:nil];
     [self handleDecimalDigitsChanged:nil];
     [self handleUseAverageValueChanged:nil];
+    [self handleUseMinFrequencyValueChanged:nil];
     [self handleFrequencyTemperatureMapChanged:[NSNotification notificationWithName:FrequencyTemperatureMapDidChangeNotification object:[TemperatureMap sharedMap].items]];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(showSettings:)] autorelease];
@@ -297,6 +303,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UseAverageValueChangeNotification
                                                   object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: UseMinFrequencyValueChangeNotification
+                                                  object: nil];
     
     [self setAudioObject:nil];
     
@@ -341,6 +350,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
                                                   object: nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UseAverageValueChangeNotification
+                                                  object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: UseMinFrequencyValueChangeNotification
                                                   object: nil];
     
     [audioObject release];
@@ -437,9 +449,9 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     TSState state = self.state;
     if ([defaults doubleForKey:kDisplayFrequency]) {
-        state.displayFrequecy = [defaults doubleForKey:kDisplayFrequency];
+        state.displayFrequency = [defaults doubleForKey:kDisplayFrequency];
     } else {
-        state.displayFrequecy = 1.0;
+        state.displayFrequency = 1.0;
     }
     self.state = state;
 }
@@ -464,10 +476,20 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
         [df setDateFormat:@"YYYY-MM-dd HH:mm:ss.S"];
     }
 
-    NSDate *date = [df stringFromDate:[timer fireDate]];
+    NSString *dateString = [df stringFromDate:[timer fireDate]];
     NSString *displayFormat = [NSString stringWithFormat:@"%%.%uf", self.state.numberOfDigits];
-    NSString *frequencyValue = [NSString stringWithFormat:displayFormat,
-                                [[timer userInfo] displayInputFrequency]];
+    
+    float displayInputFrequency = [[timer userInfo] displayInputFrequency];
+    
+    if (self.state.useMinFrequency) {
+        // use last frequency
+        NSDictionary *lastTemperature = temperatures.lastObject;
+        if (lastTemperature) {
+            displayInputFrequency = MIN([lastTemperature[@"frequency"] doubleValue], displayInputFrequency);
+        }
+    }
+    
+    NSString *frequencyValue = [NSString stringWithFormat:displayFormat, displayInputFrequency];
     NSLog(@"displayInputFrequency = %@", frequencyValue);
     
     TSState state = self.state;
@@ -478,11 +500,11 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
     self.state = state;
 
     // update table data if needed
-    if (state.steps * state.measurementFrequency >= state.displayFrequecy || !self.state.useAverageValue) {
+    if (state.steps * state.measurementFrequency >= state.displayFrequency || !self.state.useAverageValue) {
         double freqAvg = state.freqSum/state.steps;
         frequencyValue = [NSString stringWithFormat:displayFormat, freqAvg];
         
-        NSString *temperatureValue = self.temperatureMap[frequencyValue]?:@"not set";
+        NSString *temperatureValue = self.temperatureMap[frequencyValue] ? : @"not set";
         
         state.steps = 0;
         state.freqSum = 0;
@@ -494,7 +516,7 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
             currentTemperatureLabel.text = frequencyValue;
 
             [sensorsTable beginUpdates];
-            [temperatures addObject:@{ @"date": date, @"frequency": frequencyValue, @"temperature" : temperatureValue}];
+            [temperatures addObject:@{ @"date": dateString, @"frequency": frequencyValue, @"temperature" : temperatureValue}];
             NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[temperatures count] - 1 inSection:0];
             [sensorsTable insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             [sensorsTable endUpdates];
@@ -642,6 +664,19 @@ NSString* NIPathForDocumentsResource(NSString* relativePath) {
     self.state = state;
     
     NSLog(@"handleUseAverageValueChanged: useAverageValue = %i", self.state.useAverageValue);
+}
+
+- (void) handleUseMinFrequencyValueChanged: (id) notification
+{
+    TSState state = self.state;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSNumber *useMinFrequency = [defaults objectForKey:kUseMinFrequency];
+    state.useMinFrequency = useMinFrequency ? [useMinFrequency boolValue] : YES;
+    
+    self.state = state;
+    
+    NSLog(@"handleUseMinFrequencyValueChanged: useMinFrequency = %i", self.state.useMinFrequency);
 }
 
 - (void) handleFrequencyTemperatureMapChanged: (NSNotification*) notification

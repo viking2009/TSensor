@@ -15,6 +15,7 @@
 #define FrequencyDisplayIntervalDidChangeNotification @"FrequencyDisplayIntervalDidChangeNotification"
 #define DecimalDigitsDidChangeNotification @"DecimalDigitsDidChangeNotification"
 #define UseAverageValueChangeNotification @"UseAverageValueChangeNotification"
+#define UseMinFrequencyValueChangeNotification @"UseMinFrequencyValueChangeNotification"
 
 #define kMinFrequency @"minFrequency"
 #define kMaxFrequency @"maxFrequency"
@@ -23,6 +24,7 @@
 #define kDisplayFrequency @"displayFrequency"
 #define kDecimalDigits @"decimalDigits"
 #define kUseAverageValue @"useAverageValue"
+#define kUseMinFrequency @"useMinFrequency"
 
 @interface SettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -39,6 +41,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *displayValueLabel;
 @property (retain, nonatomic) IBOutlet UILabel *decimalDigitsValueLabel;
 @property (retain, nonatomic) IBOutlet UISwitch *useAverageValueSwitch;
+@property (retain, nonatomic) IBOutlet UISwitch *useMinFrequencySwitch;
 
 - (IBAction)minFrequencyValueChanged:(id)sender;
 - (IBAction)maxFrequencyValueChanged:(id)sender;
@@ -47,5 +50,6 @@
 - (IBAction)displayValueChanged:(id)sender;
 - (IBAction)decimalDigitsChanged:(id)sender;
 - (IBAction)useAverageValueSwitchValueChanged:(id)sender;
+- (IBAction)useMinFrequencySwitchValueChanged:(id)sender;
 
 @end

@@ -48,7 +48,7 @@
 		90F87EE216FBC24300D4E5DE /* SNFCoreAudioUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SNFCoreAudioUtils.c; sourceTree = "<group>"; };
 		90F87EE316FBC24300D4E5DE /* SNFCoreAudioUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFCoreAudioUtils.h; sourceTree = "<group>"; };
 		90F87EE716FBC25400D4E5DE /* MixerHostAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixerHostAudio.h; sourceTree = "<group>"; };
-		B9182530148D762600D6064E /* satrus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = satrus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9182530148D762600D6064E /* TSensor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TSensor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9182534148D762600D6064E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B9182536148D762600D6064E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B9182538148D762600D6064E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,7 +124,7 @@
 		B9182531148D762600D6064E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B9182530148D762600D6064E /* satrus.app */,
+				B9182530148D762600D6064E /* TSensor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 			);
 			name = TSensor;
 			productName = TemperatureSensor;
-			productReference = B9182530148D762600D6064E /* satrus.app */;
+			productReference = B9182530148D762600D6064E /* TSensor.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
