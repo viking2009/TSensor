@@ -62,6 +62,7 @@ Feature #78: Сhange time interval for reporting
 - move steppers to settings page
 - display average value for display interval
 
+
 20140804
 ========
 Note: project renamed to TSensor
@@ -74,3 +75,10 @@ Feature #80 Option to change number of decimal digits
 Feature #81 Option to use average value
 - switch to use average value, off by default
 Task #82 Synchronise gray label text with table list
+
+
+20140826
+========
+Note: Use min frequency
+
+Feature #98: Use min frequency
