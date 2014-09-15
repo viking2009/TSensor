@@ -76,8 +76,8 @@
 
     self.useAverageValueSwitch.on = [defaults boolForKey:kUseAverageValue];
     
-    NSNumber *useMinFrequency = [defaults objectForKey:kUseMinFrequency];
-    self.useMinFrequencySwitch.on = useMinFrequency ? [useMinFrequency boolValue] : YES;
+    NSNumber *useFrequencyValue = [defaults objectForKey:kUseFrequencyValue];
+    self.useFrequencySegmentedControl.selectedSegmentIndex = useFrequencyValue ? [useFrequencyValue integerValue] : 1;
 
     [self minFrequencyValueChanged:self.minFrequencyTextField];
     [self maxFrequencyValueChanged:self.maxFrequencyTextField];
@@ -85,7 +85,7 @@
     [self displayValueChanged:self.displayStepper];
     [self decimalDigitsChanged:self.decimalDigitsStepper];
     [self useAverageValueSwitchValueChanged:self.useAverageValueSwitch];
-    [self useMinFrequencySwitchValueChanged:self.useMinFrequencySwitch];
+//    [self useFrequencySegmentedControlValueChanged:self.useFrequencySegmentedControl];
     
     self.tableView.allowsSelectionDuringEditing = YES;
 }
@@ -111,7 +111,7 @@
     [_displayValueLabel release];
     [_decimalDigitsValueLabel release];
     [_useAverageValueSwitch release];
-    [_useMinFrequencySwitch release];
+    [_useFrequencySegmentedControl release];
     [super dealloc];
 }
 
@@ -129,6 +129,7 @@
     [self setDisplayValueLabel:nil];
     [self setDecimalDigitsValueLabel:nil];
     [self setUseAverageValueSwitch:nil];
+    [self setUseFrequencySegmentedControl:nil];
     [super viewDidUnload];
 }
 
@@ -377,13 +378,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 }
 
-- (IBAction)useMinFrequencySwitchValueChanged:(id)sender {
-    if (sender == self.useMinFrequencySwitch) {
+- (IBAction)useFrequencySegmentedControlValueChanged:(id)sender {
+    if (sender == self.useFrequencySegmentedControl) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:@(self.useMinFrequencySwitch.on) forKey:kUseMinFrequency];
+        [defaults setObject:@(self.useFrequencySegmentedControl.selectedSegmentIndex) forKey:kUseFrequencyValue];
         
         if ([defaults synchronize]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:UseMinFrequencyValueChangeNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UseFrequencyValueChangeNotification object:nil];
         }
         
         NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);

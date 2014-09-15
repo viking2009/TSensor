@@ -180,22 +180,13 @@
                                     <action selector="useAverageValueSwitchValueChanged:" destination="nZl-CT-Iqp" eventType="valueChanged" id="cAl-vl-VkS"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use min frequency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HgE-84-aAc">
-                                <rect key="frame" x="20" y="244" width="206" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use frequency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HgE-84-aAc">
+                                <rect key="frame" x="20" y="244" width="100" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="61g-QN-6X4">
-                                <rect key="frame" x="251" y="239" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="considerFrequencyRangeSwitchValueChanged:" destination="nZl-CT-Iqp" eventType="valueChanged" id="SAL-Kg-2ag"/>
-                                    <action selector="useAverageValueSwitchValueChanged:" destination="nZl-CT-Iqp" eventType="valueChanged" id="iB8-VY-42V"/>
-                                    <action selector="useMinFrequencySwitchValueChanged:" destination="nZl-CT-Iqp" eventType="valueChanged" id="rPZ-hg-Scb"/>
-                                </connections>
-                            </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Oj-bD-Occ">
                                 <rect key="frame" x="20" y="209" width="104" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -219,13 +210,13 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sW5-jD-ha5">
                                 <rect key="frame" x="234" y="138" width="66" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JHt-fm-66b">
                                 <rect key="frame" x="234" y="209" width="66" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -245,10 +236,22 @@
                             </stepper>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FWU-Kn-yCu">
                                 <rect key="frame" x="234" y="109" width="66" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Ngy-cs-qu9">
+                                <rect key="frame" x="132" y="241" width="168" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Original"/>
+                                    <segment title="Min"/>
+                                    <segment title="Max"/>
+                                </segments>
+                                <connections>
+                                    <action selector="useFrequencySegmentedControlValueChanged:" destination="nZl-CT-Iqp" eventType="valueChanged" id="Lrf-tx-7BU"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -267,7 +270,7 @@
                         <outlet property="minFrequencyTextField" destination="Tih-Qc-tsX" id="Ufx-dl-s2h"/>
                         <outlet property="tableView" destination="Yc2-u7-fih" id="Vcn-vG-H7Q"/>
                         <outlet property="useAverageValueSwitch" destination="rL7-la-t8K" id="BjY-vN-1HG"/>
-                        <outlet property="useMinFrequencySwitch" destination="61g-QN-6X4" id="Wsg-xE-pHA"/>
+                        <outlet property="useFrequencySegmentedControl" destination="Ngy-cs-qu9" id="Rjx-Mz-NL2"/>
                         <segue destination="BIn-3p-umV" kind="push" identifier="editMapInfo" id="p9p-Rr-36I"/>
                     </connections>
                 </viewController>
