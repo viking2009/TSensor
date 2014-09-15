@@ -82,3 +82,12 @@ Task #82 Synchronise gray label text with table list
 Note: Use min frequency
 
 Feature #98: Use min frequency
+
+
+20140915
+========
+Note: Use original, min or max frequency
+
+Feature #98: Use min (max) frequency
+- use segmented control for different sensor type
+
