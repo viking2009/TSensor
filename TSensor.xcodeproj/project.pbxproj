@@ -204,11 +204,6 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Apple Inc.";
-				TargetAttributes = {
-					B918252F148D762600D6064E = {
-						DevelopmentTeam = P677KX5869;
-					};
-				};
 			};
 			buildConfigurationList = B918252A148D762500D6064E /* Build configuration list for PBXProject "TSensor" */;
 			compatibilityVersion = "Xcode 3.2";
