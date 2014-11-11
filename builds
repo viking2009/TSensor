@@ -91,3 +91,10 @@ Note: Use original, min or max frequency
 Feature #98: Use min (max) frequency
 - use segmented control for different sensor type
 
+
+20141112
+========
+Note: Use original, min or max frequency
+
+Feature #110: Display temperature
+- display temperature for MIN case

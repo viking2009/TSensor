@@ -58,6 +58,9 @@
 
 #define kUpdateTemperatureInterval 1.0
 
+#define kOLSParameterA -1.99550610142
+#define kOLSParameterB 16351.0179948
+
 typedef struct TSState {
     double minFrequencyValue;
     double maxFrequencyValue;
@@ -516,17 +519,23 @@ NSString *MixerHostAudioObjectPlaybackStateDidChangeNotification = @"MixerHostAu
         double freqAvg = state.freqSum/state.steps;
         frequencyValue = [NSString stringWithFormat:displayFormat, freqAvg];
         
-        NSString *temperatureValue = self.temperatureMap[frequencyValue] ? : @"not set";
-        
         state.steps = 0;
         state.freqSum = 0;
 
         self.state = state;
 
         if ((freqAvg >= self.state.minFrequencyValue && freqAvg <= self.state.maxFrequencyValue) || !self.state.considerFrequency) {
-            // Task #82 Synchronise gray label text with table list
-            currentTemperatureLabel.text = frequencyValue;
 
+            NSString *temperatureValue;
+            // TODO: calculate OLS parameter with temperature map
+            if (self.state.useFrequencyValue == 1) {
+                temperatureValue = [NSString stringWithFormat:displayFormat, kOLSParameterA * freqAvg + kOLSParameterB];
+                currentTemperatureLabel.text = temperatureValue;
+            } else {
+                temperatureValue = self.temperatureMap[frequencyValue] ? : @"not set";
+                currentTemperatureLabel.text = frequencyValue;
+            }
+            
             [sensorsTable beginUpdates];
             [temperatures addObject:@{ @"date": dateString, @"frequency": frequencyValue, @"temperature" : temperatureValue}];
             NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[temperatures count] - 1 inSection:0];
